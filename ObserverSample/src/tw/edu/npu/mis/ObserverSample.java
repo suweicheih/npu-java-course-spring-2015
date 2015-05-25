@@ -32,20 +32,11 @@ import java.util.List;
  * Simulation of a GUI application.
  *
  * @author Samael Wang <freesamael@gmail.com>
- */
+*/
 public class ObserverSample {
 
+//記得寫註解
     public static void main(String[] args) {
         // Initialize MVC and Window objects.
-        Window window = new Window();
-        Model model = new Model();
-        Controller controller = new Controller(model);
-        List<View> views = new ArrayList<>();
-        views.add(new View("View 1", window, model));
-        views.add(new View("View 2", window, model));
-        views.add(new View("View 3", window, model));
-
-        // Start the event loop.
-        window.startEventLoop(controller, views);
-    }
-}
+        Window window = new Window()
+  //
