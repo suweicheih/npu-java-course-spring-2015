@@ -44,6 +44,13 @@ public class Window {
      * @param c The controller.
      * @param views The views to draw on the first loop.
      */
+    /**
+     * Start the event loop.
+     *
+     * @param c The controller.
+     * @param views The views to draw on the first loop.
+     * 讓使用者看看是否可以輸入內容
+     */
     public void startEventLoop(Controller c, List<Showable> views) {
         mController = c;
         mInvalidViews = new ArrayList<>(views);

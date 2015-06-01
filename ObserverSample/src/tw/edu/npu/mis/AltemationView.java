@@ -35,6 +35,12 @@ public class AltemationView implements Observer,Showable {
     private final Model mModel;
     String s = "";
 
+     /**
+     * view的抽象類別 有下列參數的建構式
+     * @param name 
+     * @param window 
+     * @param model 
+     */
     public AltemationView(String name, Window window, Model model) {
         mName = name;
         mWindow = window;
@@ -45,6 +51,9 @@ public class AltemationView implements Observer,Showable {
     /**
      * Invalidate the view, which indicates it needs to be redrawn later.
      */
+    /**
+     *把View加入Window類別中View陣列裡 
+     */
     public void invalidate() {
         mWindow.schduleRedraw(this);
     }
@@ -52,11 +61,15 @@ public class AltemationView implements Observer,Showable {
     /**
      * Show the content of the model on the console.
      */
+    
     public void onDraw() {
       if(!s.equals(mModel.getData()))   System.out.println("View (" + mName + "): " + new StringBuilder(mModel.getData()).reverse());
       s= mModel.getData();
     }
 
+    /**
+     * Model的資料有新增的話, 就會呼叫View
+     */
     @Override
     public void update() {
        invalidate();

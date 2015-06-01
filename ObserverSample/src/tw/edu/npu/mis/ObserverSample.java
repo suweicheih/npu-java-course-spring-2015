@@ -32,6 +32,11 @@ import java.util.List;
  *
  * @author STP
  */
+/**
+ * Simulation of a GUI application.
+ *
+ * @author Samael Wang <freesamael@gmail.com>
+ */
 public class ObserverSample {
     
        public static void main(String[] args) {
