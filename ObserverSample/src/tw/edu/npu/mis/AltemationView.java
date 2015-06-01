@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015, Samael Wang <freesamael@gmail.com>
+ * Copyright (c) 2015, STP
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -26,31 +26,39 @@
 package tw.edu.npu.mis;
 
 /**
- * The domain model.
  *
- * @author Samael Wang <freesamael@gmail.com>
+ * @author STP
  */
-public class Model extends Subject{
+public class AltemationView implements Observer,Showable {
+       private final String mName;
+    private final Window mWindow;
+    private final Model mModel;
+    String s = "";
 
-    private String mData;
-
-    /**
-     * Get model content.
-     *
-     * @return {@link String}
-     */
-    public String getData() {
-        return mData;
+    public AltemationView(String name, Window window, Model model) {
+        mName = name;
+        mWindow = window;
+        mModel = model;
+        mModel.attach(this);
     }
 
     /**
-     * Update model.
-     *
-     * @param data A {@link String} data.
+     * Invalidate the view, which indicates it needs to be redrawn later.
      */
-    public void setData(String data) {
-        mData = data;
-       notifyObserver();
+    public void invalidate() {
+        mWindow.schduleRedraw(this);
     }
 
+    /**
+     * Show the content of the model on the console.
+     */
+    public void onDraw() {
+      if(!s.equals(mModel.getData()))   System.out.println("View (" + mName + "): " + new StringBuilder(mModel.getData()).reverse());
+      s= mModel.getData();
+    }
+
+    @Override
+    public void update() {
+       invalidate();
+    }
 }

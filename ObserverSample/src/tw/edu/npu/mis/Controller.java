@@ -32,20 +32,24 @@ import java.util.Scanner;
  *
  * @author Samael Wang <freesamael@gmail.com>
  */
-public class ObserverSample {
+public class Controller {
 
-    public static void main(String[] args) {
-        // Initialize MVC and Window objects.
-        Window window = new Window();
-        Model model = new Model();
-        Controller controller = new Controller(model);
-        List<View> views = new ArrayList<>();
-        views.add(new View("View 1", window, model));
-        views.add(new View("View 2", window, model));
-        views.add(new View("View 3", window, model));
-        views.add(new View("View 4", window, model));
-        views.add(new View("View 4", window, model));
-        // Start the event loop.
-        window.startEventLoop(controller, views);
+    private final Model mModel;
+
+    public Controller(Model model) {
+        mModel = model;
     }
+
+    /**
+     * Read input and update model accordingly.
+     */
+    public void readInput() {
+        System.out.print("Controller: ");
+        Scanner s = new Scanner(System.in);
+        String input = s.nextLine().trim();
+        if (!input.isEmpty()) {
+            mModel.setData(input);
+        }
+    }
+
 }

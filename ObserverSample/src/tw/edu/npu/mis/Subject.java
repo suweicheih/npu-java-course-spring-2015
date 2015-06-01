@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015, Samael Wang <freesamael@gmail.com>
+ * Copyright (c) 2015, STP
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -25,32 +25,38 @@
  */
 package tw.edu.npu.mis;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
- * The domain model.
  *
- * @author Samael Wang <freesamael@gmail.com>
+ * @author user
  */
-public class Model extends Subject{
-
-    private String mData;
-
+public class Subject {
+    public List<Observer> ObserverList = new ArrayList<Observer>();
+    
     /**
-     * Get model content.
-     *
-     * @return {@link String}
+     * @param o 
+     * 新增需要註冊的View
      */
-    public String getData() {
-        return mData;
+    public void attach(Observer o) {
+        ObserverList.add(o);
     }
-
+    
     /**
-     * Update model.
-     *
-     * @param data A {@link String} data.
+     * @param o 
+     * 移除沒有需要註冊的View
      */
-    public void setData(String data) {
-        mData = data;
-       notifyObserver();
+    public void detach(Observer o) {
+        ObserverList.remove(o);
     }
-
+    
+    /**
+     * Model一有變動需要呼叫所有註冊的View
+     */
+    public void notifyObserver() {
+        for(Observer o: ObserverList) {
+            o.update();
+        }
+    }
 }
