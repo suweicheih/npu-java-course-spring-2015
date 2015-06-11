@@ -8,11 +8,14 @@ package tw.edu.npu.mis;
 /**
  * The model class of the calculator application.
  */
-public class Calculator {
-    
+public class Calculator extends java.util.Observable {
+    String s = "",a;
+    int count,count2;
+ 
     /**
      * The available operators of the calculator.
      */
+  
     public enum Operator {
         CLEAR,       // C
         CLEAR_ENTRY, // CE
@@ -34,27 +37,98 @@ public class Calculator {
     }
     
     public void appendDigit(int digit) {
-        // TODO code application logic here
+        s += String.valueOf(digit);
+        getDisplay();
     }
     
-    public void appendDot() {
+    public void appendDot(String dot) {
+        s += dot;
+         getDisplay();
         // TODO code application logic here
     }
     
     public void performOperation(Operator operator) {
+        if(operator == Operator.PLUS)
+        {
+          count = Integer.parseInt(s);
+          s= "";
+          getDisplay() ;
+          a = "+";
+        }
+        
+        if(operator == Operator.MINUS)
+        {
+          count = Integer.parseInt(s);
+          s= "";
+          getDisplay() ;
+          a = "-";
+         
+        }
+        
+         if(operator == Operator.TIMES)
+        {
+          count = Integer.parseInt(s);
+          s= "";
+          getDisplay() ;
+          a = "*";
+        }
+         
+         if(operator == Operator.OVER)
+        {
+          count = Integer.parseInt(s);
+          s= "";
+          getDisplay() ;
+          a = "/";
+        }
+             
+        if(operator == Operator.EQUAL)
+        {
+            if(a =="+")
+            {
+                count2 = Integer.parseInt(s);
+                s = String.valueOf(count+count2);
+                getDisplay();
+                s= "";
+            }
+            if(a =="-")
+            {
+                count2 = Integer.parseInt(s);
+                s = String.valueOf(count-count2);
+                getDisplay();
+                s= "";
+            }
+             if(a =="*")
+            {
+                count2 = Integer.parseInt(s);
+                s = String.valueOf(count*count2);
+                getDisplay();
+                s= "";
+            }
+              if(a =="/")
+            {
+                count2 = Integer.parseInt(s);
+                s = String.valueOf(count/count2);
+                getDisplay();
+                s= "";
+            }
+
+        }
         // TODO code application logic here
     }
     
     public String getDisplay() {
-        // TODO code application logic here
+        setChanged();
+	notifyObservers(s);
         return null;
     }
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
+    public void setOperation(String text)
+    {
+        if(text == "+") performOperation (Operator.PLUS);
+        if(text == "=") performOperation (Operator.EQUAL);
+        if(text == "-") performOperation (Operator.MINUS);
+        if(text == "*") performOperation (Operator.TIMES);
+        if(text == "/") performOperation (Operator.OVER);
+        
     }
-
+  
 }
