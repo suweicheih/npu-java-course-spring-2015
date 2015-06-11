@@ -55,6 +55,7 @@ public class Calculator extends java.util.Observable {
           getDisplay() ;
           a = "+";
         }
+        //相加的意思
         
         if(operator == Operator.MINUS)
         {
@@ -64,7 +65,7 @@ public class Calculator extends java.util.Observable {
           a = "-";
          
         }
-        
+        //相減的意思
          if(operator == Operator.TIMES)
         {
           count = Integer.parseInt(s);
@@ -72,6 +73,7 @@ public class Calculator extends java.util.Observable {
           getDisplay() ;
           a = "*";
         }
+         //相乘的意思
          
          if(operator == Operator.OVER)
         {
@@ -80,6 +82,7 @@ public class Calculator extends java.util.Observable {
           getDisplay() ;
           a = "/";
         }
+         //相除的意思
              
         if(operator == Operator.EQUAL)
         {
@@ -90,6 +93,7 @@ public class Calculator extends java.util.Observable {
                 getDisplay();
                 s= "";
             }
+            //數字相加後結果
             if(a =="-")
             {
                 count2 = Integer.parseInt(s);
@@ -97,6 +101,7 @@ public class Calculator extends java.util.Observable {
                 getDisplay();
                 s= "";
             }
+            //數字相減後結果
              if(a =="*")
             {
                 count2 = Integer.parseInt(s);
@@ -104,6 +109,7 @@ public class Calculator extends java.util.Observable {
                 getDisplay();
                 s= "";
             }
+             //數字相乘後結果
               if(a =="/")
             {
                 count2 = Integer.parseInt(s);
@@ -111,7 +117,7 @@ public class Calculator extends java.util.Observable {
                 getDisplay();
                 s= "";
             }
-
+             //數字相除後結果
         }
         // TODO code application logic here
     }
