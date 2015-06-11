@@ -35,19 +35,31 @@ public class Calculator extends java.util.Observable {
         MEM_MINUS,   // M-
         MEM_RECALL   // MR
     }
-    
+    /**
+     * 顯示數字
+     * @param digit 
+     */
     public void appendDigit(int digit) {
         s += String.valueOf(digit);
         getDisplay();
     }
-    
+    /**
+     * 顯示點
+     * @param dot 
+     */
     public void appendDot(String dot) {
         s += dot;
          getDisplay();
         // TODO code application logic here
     }
-    
+    /**
+     * 運算功能
+     * @param operator 
+     */
     public void performOperation(Operator operator) {
+        /**
+         * 加
+         */
         if(operator == Operator.PLUS)
         {
           count = Integer.parseInt(s);
@@ -55,7 +67,9 @@ public class Calculator extends java.util.Observable {
           getDisplay() ;
           a = "+";
         }
-        //相加的意思
+        /**
+         * 減
+         */
         
         if(operator == Operator.MINUS)
         {
@@ -65,7 +79,9 @@ public class Calculator extends java.util.Observable {
           a = "-";
          
         }
-        //相減的意思
+        /**
+         * 乘
+         */
          if(operator == Operator.TIMES)
         {
           count = Integer.parseInt(s);
@@ -73,7 +89,9 @@ public class Calculator extends java.util.Observable {
           getDisplay() ;
           a = "*";
         }
-         //相乘的意思
+         /**
+          * 除
+          */
          
          if(operator == Operator.OVER)
         {
@@ -82,7 +100,9 @@ public class Calculator extends java.util.Observable {
           getDisplay() ;
           a = "/";
         }
-         //相除的意思
+         /**
+          * 等於 判斷運算符號 依各種運算符號運算執行結果
+          */
              
         if(operator == Operator.EQUAL)
         {
@@ -93,7 +113,7 @@ public class Calculator extends java.util.Observable {
                 getDisplay();
                 s= "";
             }
-            //數字相加後結果
+        
             if(a =="-")
             {
                 count2 = Integer.parseInt(s);
@@ -101,7 +121,7 @@ public class Calculator extends java.util.Observable {
                 getDisplay();
                 s= "";
             }
-            //數字相減後結果
+            
              if(a =="*")
             {
                 count2 = Integer.parseInt(s);
@@ -109,7 +129,7 @@ public class Calculator extends java.util.Observable {
                 getDisplay();
                 s= "";
             }
-             //數字相乘後結果
+            
               if(a =="/")
             {
                 count2 = Integer.parseInt(s);
@@ -117,16 +137,23 @@ public class Calculator extends java.util.Observable {
                 getDisplay();
                 s= "";
             }
-             //數字相除後結果
+            
         }
         // TODO code application logic here
     }
-    
+    /**
+     * 回傳最新值
+     * @return 
+     */
     public String getDisplay() {
         setChanged();
 	notifyObservers(s);
         return null;
     }
+    /**
+     * 依傳過來的符號來判斷執行哪一種運算結果
+     * @param text 
+     */
     public void setOperation(String text)
     {
         if(text == "+") performOperation (Operator.PLUS);
