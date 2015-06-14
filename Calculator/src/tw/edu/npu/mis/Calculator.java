@@ -63,12 +63,12 @@ public class Calculator extends java.util.Observable {
             if(s !="")
             {
                  r = Double.valueOf(s);
-                 r = 1/r;
+                 r = r/100;
                  s = String.valueOf(r);
                  getDisplay() ;
                  s= "";
-                 r= 0;
             }
+        }
         if(operator == Operator.SQRT)
         {
             if(s!="")
@@ -91,7 +91,6 @@ public class Calculator extends java.util.Observable {
                         s= "0"; 
                         getDisplay();
                          s = "";
-                        
                    }
                     else
                     {
@@ -111,7 +110,6 @@ public class Calculator extends java.util.Observable {
                  s = String.valueOf(r);
                  getDisplay() ;
                  s= "";
-                  r= 0;
             }
           
         }
@@ -198,7 +196,6 @@ public class Calculator extends java.util.Observable {
             
         }
         // TODO code application logic here
-    }
     }
     /**
      * 回傳最新值

@@ -380,8 +380,7 @@ public class Brian extends javax.swing.JFrame implements java.util.Observer {
     }//GEN-LAST:event_jButton19ActionPerformed
 
     private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
-        Model.setOperation(jButton20.getText());
-        
+        Model.setOperation(jButton20.getText());  
     }//GEN-LAST:event_jButton20ActionPerformed
 
     /**
