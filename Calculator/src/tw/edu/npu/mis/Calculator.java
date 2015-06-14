@@ -10,7 +10,7 @@ package tw.edu.npu.mis;
  */
 public class Calculator extends java.util.Observable {
     String s = "",a;
-    int count,count2;
+    int count,count2; double r;
  
     /**
      * The available operators of the calculator.
@@ -33,7 +33,8 @@ public class Calculator extends java.util.Observable {
         MEM_SET,     // MS
         MEM_PLUS,    // M+
         MEM_MINUS,   // M-
-        MEM_RECALL   // MR
+        MEM_RECALL,   // MR
+        BACK          //←
     }
     /**
      * 顯示數字
@@ -57,6 +58,63 @@ public class Calculator extends java.util.Observable {
      * @param operator 
      */
     public void performOperation(Operator operator) {
+           if(operator == Operator.RECIPROCAL)
+        {
+            if(s !="")
+            {
+                 r = Double.valueOf(s);
+                 r = 1/r;
+                 s = String.valueOf(r);
+                 getDisplay() ;
+                 s= "";
+                 r= 0;
+            }
+        if(operator == Operator.SQRT)
+        {
+            if(s!="")
+            {
+                s = String.valueOf(Math.sqrt(Double.parseDouble(s)));
+                double a  = Double.parseDouble(s);
+                if(s.indexOf(".0")==s.length()-2) s = String.valueOf((int)a);
+               getDisplay();
+                    
+            }
+        }
+          if(operator == Operator.BACK)
+        {
+            if(s!="")
+            {
+                if(s.length()>0) {
+                    s = s.substring(0,s.length()-1);
+                    if(s.length()==0)
+                   {
+                        s= "0"; 
+                        getDisplay();
+                         s = "";
+                        
+                   }
+                    else
+                    {
+                        getDisplay();
+                    }
+                }
+            }            
+            
+           
+        }
+          if(operator == Operator.PERCENT)
+        {
+            if(s !="")
+            {
+                 r = Double.valueOf(s);
+                 r = r/100;
+                 s = String.valueOf(r);
+                 getDisplay() ;
+                 s= "";
+                  r= 0;
+            }
+          
+        }
         /**
          * 加
          */
@@ -141,6 +199,7 @@ public class Calculator extends java.util.Observable {
         }
         // TODO code application logic here
     }
+    }
     /**
      * 回傳最新值
      * @return 
@@ -161,6 +220,11 @@ public class Calculator extends java.util.Observable {
         if(text == "-") performOperation (Operator.MINUS);
         if(text == "*") performOperation (Operator.TIMES);
         if(text == "/") performOperation (Operator.OVER);
+        if(text == "%") performOperation (Operator.PERCENT); 
+        if(text == "←") performOperation (Operator.BACK);
+        if(text == "1/x") performOperation (Operator.RECIPROCAL);
+        if(text == "√") performOperation (Operator.SQRT);
+         
         
     }
   
